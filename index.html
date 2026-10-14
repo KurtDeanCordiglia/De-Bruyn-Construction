@@ -1,0 +1,503 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>De Bruyn Developments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: navy "site at night" hero with rising skyline bars → light concrete body sections → navy close. Single deliberate brand look. */
+:root{
+  color-scheme: light;
+  --navy:#1e2a4a;
+  --navy-deep:#141d36;
+  --navy-line:#2f3d63;
+  --orange:#f7941d;
+  --orange-ink:#c96f00;
+  --concrete:#eef0f4;
+  --paper:#ffffff;
+  --ink:#1a2238;
+  --ink-soft:#5a6480;
+  --white:#f5f6f8;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --gutter:clamp(16px,4vw,48px);
+  --max:1200px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--concrete);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.02}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-variation-settings:"wdth" 110;font-size:15px;letter-spacing:.04em;text-transform:uppercase;padding:15px 24px;border:2px solid var(--orange);background:var(--orange);color:var(--navy-deep);text-decoration:none;cursor:pointer;transition:background .2s,color .2s}
+.btn:hover{background:transparent;color:var(--orange)}
+.btn.ghost{background:transparent;color:var(--white);border-color:rgba(245,246,248,.35)}
+.btn.ghost:hover{border-color:var(--white)}
+
+/* NAV */
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(20,29,54,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--navy-line);color:var(--white)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{width:40px;height:30px;flex:none}
+.brand b{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 112;font-size:18px;letter-spacing:.02em;line-height:1}
+.brand small{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--orange);margin-top:4px}
+.links{display:flex;gap:28px;align-items:center}
+.links a{text-decoration:none;font-size:14px;font-weight:500;color:rgba(245,246,248,.78)}
+.links a:hover{color:var(--white)}
+.links a.nav-tel{font-family:var(--mono);color:var(--orange);font-size:13px}
+.links .btn{padding:10px 18px;font-size:13px;color:var(--navy-deep)}
+.links .btn:hover{color:var(--orange)}
+.burger{display:none;background:none;border:1px solid var(--navy-line);color:var(--white);width:44px;height:44px;cursor:pointer}
+@media (max-width:860px){
+  .burger{display:grid;place-items:center}
+  .links{position:absolute;left:0;right:0;top:72px;flex-direction:column;align-items:stretch;gap:0;background:var(--navy-deep);border-bottom:1px solid var(--navy-line);padding:8px var(--gutter) 20px}
+  .links a{padding:14px 0;border-bottom:1px solid var(--navy-line)}
+  .links .btn{margin-top:16px;justify-content:center;border-bottom:2px solid var(--orange)}
+  .links:not(.open){display:none}
+}
+
+/* HERO */
+.hero{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--navy-line) 1px,transparent 1px),linear-gradient(90deg,var(--navy-line) 1px,transparent 1px);background-size:48px 48px;opacity:.35;mask-image:linear-gradient(180deg,#000 0%,transparent 85%)}
+.hero-in{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:end;padding-block:clamp(56px,9vw,112px) 0}
+.hero-copy{padding-bottom:clamp(48px,7vw,96px);min-width:0}
+.hero .label{color:var(--orange);display:flex;align-items:center;gap:12px}
+.hero .label::before{content:"";width:32px;height:2px;background:var(--orange)}
+.hero h1{font-size:clamp(44px,7.4vw,96px);font-weight:800;font-variation-settings:"wdth" 118;letter-spacing:-.01em;margin-top:22px;text-transform:uppercase}
+.hero h1 span{color:var(--orange)}
+.hero p.lede{max-width:52ch;font-size:clamp(17px,1.6vw,19px);color:rgba(245,246,248,.75);margin:24px 0 36px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px}
+.skyline{display:flex;align-items:flex-end;justify-content:center;gap:clamp(8px,1.4vw,16px);height:clamp(260px,34vw,440px);position:relative}
+.skyline .bar{width:clamp(44px,6vw,84px);transform-origin:bottom;animation:rise 1.2s cubic-bezier(.2,.8,.2,1) both;position:relative}
+.skyline .bar::after{content:"";position:absolute;inset:14px 10px auto;height:calc(100% - 28px);background-image:repeating-linear-gradient(180deg,rgba(20,29,54,.18) 0 2px,transparent 2px 22px)}
+.bar.w{background:linear-gradient(180deg,#f5f6f8,#cfd4de)}
+.bar.o{background:linear-gradient(180deg,#ffa63a,#e57f05)}
+.skyline .b1{height:46%;animation-delay:.05s}.skyline .b2{height:78%;animation-delay:.15s}.skyline .b3{height:100%;animation-delay:.25s}.skyline .b4{height:60%;animation-delay:.35s}
+.skyline::after{content:"";position:absolute;left:-10%;right:-10%;bottom:0;height:4px;background:linear-gradient(90deg,transparent,var(--white) 30%,var(--orange) 70%,transparent)}
+@keyframes rise{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
+.crane-tag{position:absolute;top:8%;right:0;font-family:var(--mono);font-size:11px;color:rgba(245,246,248,.55);text-align:right;line-height:1.7}
+@media (max-width:860px){.hero-in{grid-template-columns:1fr;gap:0}.hero-copy{padding-bottom:40px}.skyline{height:220px}.crane-tag{display:none}}
+
+/* STRIP */
+.strip{background:var(--navy-deep);color:var(--white);border-top:1px solid var(--navy-line)}
+.strip-in{display:grid;grid-template-columns:repeat(4,1fr)}
+.strip-in div{padding:26px 20px;border-left:1px solid var(--navy-line)}
+.strip-in div:first-child{border-left:0;padding-left:0}
+.strip b{display:block;font-family:var(--display);font-variation-settings:"wdth" 115;font-weight:800;font-size:clamp(22px,2.6vw,30px);color:var(--orange);line-height:1.1}
+.strip span{font-size:13px;color:rgba(245,246,248,.65)}
+@media (max-width:760px){.strip-in{grid-template-columns:1fr 1fr}.strip-in div{padding:20px 14px}.strip-in div:nth-child(3){border-left:0;padding-left:0}.strip-in div:nth-child(n+3){border-top:1px solid var(--navy-line)}}
+
+/* SECTIONS */
+section.block{padding-block:clamp(72px,10vw,128px)}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
+.head .label{color:var(--orange-ink)}
+.head h2{font-size:clamp(34px,4.6vw,58px);font-weight:800;font-variation-settings:"wdth" 108;margin-top:14px;text-transform:uppercase;letter-spacing:-.005em;max-width:16ch}
+.head p{max-width:44ch;color:var(--ink-soft);margin:0}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
+.photo{aspect-ratio:4/5;max-width:100%;background:var(--navy) ;position:relative;overflow:hidden;display:grid;place-items:center;color:rgba(245,246,248,.6)}
+.photo::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--navy-line) 1px,transparent 1px),linear-gradient(90deg,var(--navy-line) 1px,transparent 1px);background-size:24px 24px;opacity:.6}
+.photo .ph{position:relative;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:16px;border:1px dashed rgba(245,246,248,.35)}
+.photo .stamp{position:absolute;right:20px;bottom:20px;background:var(--orange);color:var(--navy-deep);padding:16px 18px;font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 115;line-height:1.05;font-size:15px;text-transform:uppercase}
+.about-copy{min-width:0}
+.about-copy p{color:var(--ink-soft);font-size:17px;max-width:58ch}
+.about-copy p.big{color:var(--ink);font-size:clamp(20px,2vw,24px);line-height:1.45;font-weight:500}
+.checks{list-style:none;padding:0;margin:28px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:14px 24px}
+.checks li{display:flex;gap:12px;font-weight:500;font-size:15px}
+.checks li::before{content:"";flex:none;width:14px;height:14px;margin-top:5px;background:var(--orange);clip-path:polygon(0 100%,0 40%,35% 40%,35% 0,100% 0,100% 100%)}
+@media (max-width:860px){.about{grid-template-columns:1fr}.photo{aspect-ratio:16/11}.checks{grid-template-columns:1fr}}
+
+/* SERVICES */
+.services{background:var(--paper)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--ink)}
+.svc{padding:32px 28px 36px;border-bottom:1px solid #d6dae3;border-right:1px solid #d6dae3;position:relative;transition:background .25s}
+.svc:nth-child(3n){border-right:0}
+.svc:hover{background:var(--concrete)}
+.svc svg{width:44px;height:44px;color:var(--orange)}
+.svc h3{font-size:22px;font-weight:800;font-variation-settings:"wdth" 105;text-transform:uppercase;margin:22px 0 10px}
+.svc p{color:var(--ink-soft);margin:0 0 16px;font-size:15px}
+.svc .tags{display:flex;flex-wrap:wrap;gap:6px}
+.svc .tags span{font-family:var(--mono);font-size:11px;padding:4px 8px;background:var(--concrete);color:var(--ink);letter-spacing:.04em}
+.svc:hover .tags span{background:var(--paper)}
+@media (max-width:960px){.svc-grid{grid-template-columns:1fr 1fr}.svc:nth-child(3n){border-right:1px solid #d6dae3}.svc:nth-child(2n){border-right:0}}
+@media (max-width:600px){.svc-grid{grid-template-columns:1fr}.svc{border-right:0!important;padding-inline:4px}}
+
+/* PROJECTS */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:9px 14px;border:1px solid #c3c9d6;background:transparent;color:var(--ink);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.proj-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:28px}
+.proj{grid-column:span 2;position:relative;background:var(--navy);color:var(--white);min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;overflow:hidden;cursor:default}
+.proj.wide{grid-column:span 4}
+.proj::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--navy-line) 1px,transparent 1px),linear-gradient(90deg,var(--navy-line) 1px,transparent 1px);background-size:20px 20px;opacity:.55;transition:transform .6s}
+.proj:hover::before{transform:scale(1.06)}
+.proj .ph{position:absolute;top:20px;left:22px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:rgba(245,246,248,.45);text-transform:uppercase}
+.proj .cat{position:relative;align-self:flex-start;background:var(--orange);color:var(--navy-deep);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;margin-bottom:12px}
+.proj h3{position:relative;font-size:24px;font-weight:800;font-variation-settings:"wdth" 108;text-transform:uppercase}
+.proj p{position:relative;margin:6px 0 0;font-size:14px;color:rgba(245,246,248,.7)}
+.proj[hidden]{display:none!important}
+@media (max-width:860px){.proj-grid{grid-template-columns:1fr 1fr}.proj,.proj.wide{grid-column:span 1}.proj.wide{grid-column:span 2}}
+@media (max-width:560px){.proj-grid{grid-template-columns:1fr}.proj,.proj.wide{grid-column:span 1;min-height:240px}}
+
+/* PROCESS */
+.process{background:var(--navy);color:var(--white)}
+.process .head .label{color:var(--orange)}
+.process .head p{color:rgba(245,246,248,.7)}
+.proc{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,72px);align-items:stretch}
+.stages{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.stages button{width:100%;display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:14px;text-align:left;background:none;border:0;border-top:1px solid var(--navy-line);color:rgba(245,246,248,.6);padding:20px 0;cursor:pointer;font:inherit}
+.stages li:last-child button{border-bottom:1px solid var(--navy-line)}
+.stages .n{font-family:var(--mono);font-size:13px}
+.stages .t{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 110;font-size:clamp(20px,2.2vw,26px);text-transform:uppercase}
+.stages .arr{font-family:var(--mono);opacity:0;transition:opacity .2s}
+.stages button[aria-selected="true"]{color:var(--white)}
+.stages button[aria-selected="true"] .n{color:var(--orange)}
+.stages button[aria-selected="true"] .arr{opacity:1;color:var(--orange)}
+.stage-panel{background:var(--navy-deep);border:1px solid var(--navy-line);padding:clamp(24px,3vw,36px);display:grid;grid-template-columns:1fr 120px;gap:28px;min-width:0}
+.stage-panel h3{font-size:clamp(26px,3vw,36px);font-weight:800;font-variation-settings:"wdth" 110;text-transform:uppercase;margin:10px 0 14px}
+.stage-panel .label{color:var(--orange)}
+.stage-panel p{color:rgba(245,246,248,.75);margin:0 0 18px}
+.stage-panel ul{margin:0;padding-left:18px;color:rgba(245,246,248,.85);font-size:15px}
+.stage-panel li{margin-bottom:6px}
+.build{display:flex;flex-direction:column-reverse;gap:4px;align-self:end}
+.build span{height:34px;background:var(--navy-line);transition:background .35s}
+.build span.on{background:var(--orange)}
+.build span.top{background:var(--white)}
+.build-cap{font-family:var(--mono);font-size:11px;color:rgba(245,246,248,.5);text-align:center;margin-top:8px}
+@media (max-width:860px){.proc{grid-template-columns:1fr}.stage-panel{grid-template-columns:1fr 64px;gap:18px}.build span{height:24px}}
+
+/* QUOTE */
+.quote{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,72px)}
+.contact-list{display:flex;flex-direction:column;gap:20px;margin-top:32px}
+.contact-list div{border-left:3px solid var(--orange);padding-left:16px}
+.contact-list .label{color:var(--ink-soft);font-size:11px}
+.contact-list b{display:block;font-size:18px;font-weight:600;user-select:all}
+form.card{background:var(--paper);padding:clamp(22px,3.5vw,40px);border-top:4px solid var(--orange);min-width:0}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field label,.field legend{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.field input,.field textarea,.field select{font:inherit;font-size:16px;padding:13px 14px;border:1px solid #c3c9d6;background:var(--concrete);color:var(--ink);border-radius:0;width:100%}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--navy);background:var(--paper)}
+fieldset.field{border:0;padding:0;margin:0 0 20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0;width:1px;height:1px}
+.chips span{display:inline-block;padding:9px 14px;border:1px solid #c3c9d6;font-size:14px;font-weight:500;color:var(--ink);text-transform:none;letter-spacing:0;font-family:var(--body)}
+.chips input:checked+span{background:var(--navy);border-color:var(--navy);color:var(--white)}
+.chips input:focus-visible+span{outline:2px solid var(--orange);outline-offset:2px}
+.form-note{font-size:13px;color:var(--ink-soft);margin:14px 0 0}
+.done{background:var(--navy);color:var(--white);padding:22px;margin-top:20px}
+.done b{color:var(--orange);font-family:var(--display);font-variation-settings:"wdth" 110;text-transform:uppercase;font-size:18px}
+.done pre{white-space:pre-wrap;font-family:var(--mono);font-size:12.5px;background:var(--navy-deep);padding:14px;margin:12px 0;color:rgba(245,246,248,.85);overflow-x:auto}
+@media (max-width:860px){.quote{grid-template-columns:1fr}}
+@media (max-width:520px){.row2{grid-template-columns:1fr;gap:0}}
+
+/* FOOTER */
+footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px 32px;font-size:14px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+.foot h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin:0 0 14px;font-weight:500}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--white)}
+.foot .brand b{color:var(--white)}
+.legal{border-top:1px solid var(--navy-line);margin-top:40px;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px}
+@media (max-width:760px){.foot{grid-template-columns:1fr 1fr}.foot>div:first-child{grid-column:1/-1}}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand" aria-label="De Bruyn Developments & Projects, home">
+      <svg viewBox="0 0 40 30" aria-hidden="true"><path d="M4 26V14l7-2v14z" fill="#e8eaef"/><path d="M13 26V7l8-3v22z" fill="#e8eaef"/><path d="M22 4l8 3v19h-8z" fill="#f7941d"/><path d="M31 12l5 2v12h-5z" fill="#f7941d"/><path d="M0 29l21-2v1z" fill="#e8eaef"/><path d="M21 27l19 2h-19z" fill="#f7941d"/></svg>
+      <span><b>DE BRUYN</b><small>DEVELOPMENTS &amp; PROJECTS</small></span>
+    </a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="links">
+      <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true"><path d="M0 1h20M0 7h20M0 13h12" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+    <nav class="links" id="links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#process">How we work</a>
+      <a href="tel:+27834244263" class="nav-tel">083 424 4263</a>
+      <a href="#quote" class="btn">Get a quote →</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div class="hero-copy">
+        <div class="label">Builders &amp; developers · Western Cape</div>
+        <h1>From bare plot to <span>handover.</span></h1>
+        <p class="lede">De Bruyn Developments &amp; Projects handles building, renovations, painting, waterproofing, tiling and maintenance. One team runs your project from first site visit to final snag list, so you deal with one contractor and one programme.</p>
+        <div class="hero-ctas">
+          <a href="#quote" class="btn">Start your project →</a>
+          <a href="#projects" class="btn ghost">See our work</a>
+        </div>
+      </div>
+      <div class="skyline" aria-hidden="true">
+        <div class="crane-tag">LEVEL 03 · SLAB POUR<br>PROGRAMME ON TRACK</div>
+        <div class="bar w b1"></div>
+        <div class="bar w b2"></div>
+        <div class="bar o b3"></div>
+        <div class="bar o b4"></div>
+      </div>
+    </div>
+    <div class="strip">
+      <div class="wrap strip-in">
+        <div><b>6 trades</b><span>Building to tiling, one team</span></div>
+        <div><b>1 contact</b><span>Dedicated project manager</span></div>
+        <div><b>Fixed</b><span>Itemised, line-by-line quotes</span></div>
+        <div><b>Weekly</b><span>Photo progress reports</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap about">
+      <div class="photo">
+        <div class="ph">Team / site photo<br>4:5 · min 1200px</div>
+        <div class="stamp">Owner-run.<br>On site.</div>
+      </div>
+      <div class="about-copy">
+        <div class="head" style="margin-bottom:24px"><div><div class="label">About us</div><h2>Built properly, the first time.</h2></div></div>
+        <p class="big">We're a hands-on building company. The person who quotes your job is the person who runs it on site.</p>
+        <p>De Bruyn Developments &amp; Projects takes on residential and light commercial work across the Western Cape. We keep the team small enough to stay close to every build and experienced enough to handle everything from foundations to finishes.</p>
+        <ul class="checks">
+          <li>Plans, approvals and engineer coordination</li>
+          <li>Our own trusted subcontractor teams</li>
+          <li>Transparent variations, signed off before work starts</li>
+          <li>Clean, safe and secure sites</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block services" id="services">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="label">What we build</div><h2>One contractor. Every stage.</h2></div>
+        <p>Pick a single trade or hand us the whole project. Either way you get one quote, one programme and one person to call.</p>
+      </div>
+      <div class="svc-grid">
+        <article class="svc">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M8 30a14 14 0 0 1 28 0"/><path d="M5 30h34v4H5zM18 17v-4h8v4"/></svg>
+          <h3>Building</h3>
+          <p>New homes, extensions, garages and flatlets, built from approved plans through to final finishes.</p>
+          <div class="tags"><span>New builds</span><span>Extensions</span><span>Flatlets</span></div>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M30 6a8 8 0 0 0-8 10L8 30a4 4 0 0 0 6 6l14-14a8 8 0 0 0 10-8l-5 3-4-4z"/></svg>
+          <h3>Renovating</h3>
+          <p>Kitchens, bathrooms, open-plan conversions and full home makeovers, finished to a high standard.</p>
+          <div class="tags"><span>Kitchens</span><span>Bathrooms</span><span>Remodels</span></div>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M8 6h24v10H8zM32 11h4v9H20v6"/><path d="M17 26h6v12h-6z"/></svg>
+          <h3>Painting</h3>
+          <p>Interior and exterior painting with proper surface prep, crack repairs and quality coatings that last.</p>
+          <div class="tags"><span>Interior</span><span>Exterior</span><span>Roof paint</span></div>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="22" cy="22" r="15"/><circle cx="22" cy="22" r="5"/><path d="M22 7v6M22 31v6M7 22h6M31 22h6"/></svg>
+          <h3>Maintenance</h3>
+          <p>Ongoing and once-off repairs for homes, rentals and businesses, so small problems never become big ones.</p>
+          <div class="tags"><span>Repairs</span><span>Rentals</span><span>Call-outs</span></div>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 6c7 9 11 15 11 20a11 11 0 0 1-22 0c0-5 4-11 11-20z"/><path d="M17 27a5 5 0 0 0 5 5"/></svg>
+          <h3>Waterproofing</h3>
+          <p>Roofs, parapets, balconies and damp walls sealed properly before the Cape winter rains arrive.</p>
+          <div class="tags"><span>Torch-on</span><span>Flat roofs</span><span>Damp</span></div>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 7h30v30H7zM22 7v30M7 22h30"/></svg>
+          <h3>Tiling</h3>
+          <p>Floor and wall tiling for bathrooms, kitchens, patios and pool areas, laid level with clean grout lines.</p>
+          <div class="tags"><span>Floors</span><span>Walls</span><span>Outdoor</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="projects">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="label">Recent work</div><h2>Projects on the ground.</h2></div>
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button type="button" data-f="all" aria-pressed="true">All</button>
+          <button type="button" data-f="residential" aria-pressed="false">Residential</button>
+          <button type="button" data-f="commercial" aria-pressed="false">Commercial</button>
+          <button type="button" data-f="renovation" aria-pressed="false">Renovation</button>
+        </div>
+      </div>
+      <div class="proj-grid">
+        <article class="proj wide" data-c="residential"><div class="ph">Project photo · 16:9</div><span class="cat">Residential</span><h3>Double-storey family home</h3><p>New build · 320 m² · Example project</p></article>
+        <article class="proj" data-c="renovation"><div class="ph">Project photo</div><span class="cat">Renovation</span><h3>Kitchen &amp; living remodel</h3><p>Open-plan conversion · Example project</p></article>
+        <article class="proj" data-c="commercial"><div class="ph">Project photo</div><span class="cat">Commercial</span><h3>Retail unit fit-out</h3><p>Shell to trading in 6 weeks · Example</p></article>
+        <article class="proj" data-c="residential"><div class="ph">Project photo</div><span class="cat">Residential</span><h3>Second-storey addition</h3><p>Extension · 2 bedrooms + bath · Example</p></article>
+        <article class="proj" data-c="renovation"><div class="ph">Project photo</div><span class="cat">Renovation</span><h3>Roof replacement</h3><p>Re-roof &amp; waterproofing · Example</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block process" id="process">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="label">How we work</div><h2>Five stages. No surprises.</h2></div>
+        <p>You always know where your build stands and what comes next. Tap a stage to see what happens.</p>
+      </div>
+      <div class="proc">
+        <ol class="stages" role="tablist" aria-label="Build stages" id="stages"></ol>
+        <div class="stage-panel" role="tabpanel" id="panel" aria-live="polite">
+          <div>
+            <div class="label" id="p-step"></div>
+            <h3 id="p-title"></h3>
+            <p id="p-text"></p>
+            <ul id="p-list"></ul>
+          </div>
+          <div>
+            <div class="build" id="build" aria-hidden="true"></div>
+            <div class="build-cap" id="build-cap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="quote">
+    <div class="wrap quote">
+      <div>
+        <div class="head" style="margin-bottom:0"><div><div class="label">Get a quote</div><h2>Tell us about your build.</h2></div></div>
+        <p style="color:var(--ink-soft);max-width:42ch;margin-top:20px">Send the basics and we'll come back within two working days to arrange a site visit. Plans or photos help, but they're not required.</p>
+        <div class="contact-list">
+          <div><span class="label">Phone / WhatsApp</span><b><a href="tel:+27834244263" style="text-decoration:none">083 424 4263</a></b></div>
+          <div><span class="label">Email</span><b><a href="mailto:debruyndevelopments@gmail.com" style="text-decoration:none;word-break:break-all">debruyndevelopments@gmail.com</a></b></div>
+          <div><span class="label">Area</span><b>Cape Town &amp; Western Cape</b></div>
+        </div>
+      </div>
+      <form class="card" id="qform" novalidate>
+        <fieldset class="field">
+          <legend>Project type</legend>
+          <div class="chips">
+            <label><input type="radio" name="type" id="t1" value="Building" checked><span>Building</span></label>
+            <label><input type="radio" name="type" id="t2" value="Renovating"><span>Renovating</span></label>
+            <label><input type="radio" name="type" id="t3" value="Painting"><span>Painting</span></label>
+            <label><input type="radio" name="type" id="t4" value="Maintenance"><span>Maintenance</span></label>
+            <label><input type="radio" name="type" id="t5" value="Waterproofing"><span>Waterproofing</span></label>
+            <label><input type="radio" name="type" id="t6" value="Tiling"><span>Tiling</span></label>
+          </div>
+        </fieldset>
+        <div class="row2">
+          <div class="field"><label for="name">Full name</label><input id="name" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" required autocomplete="tel"></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="suburb">Site suburb</label><input id="suburb" name="suburb" placeholder="e.g. Durbanville"></div>
+          <div class="field"><label for="budget">Budget range</label>
+            <select id="budget" name="budget"><option>Not sure yet</option><option>Under R250k</option><option>R250k – R750k</option><option>R750k – R2m</option><option>R2m +</option></select></div>
+        </div>
+        <div class="field"><label for="msg">What do you want built?</label><textarea id="msg" name="msg" rows="4" placeholder="Size, timing, whether you have approved plans…"></textarea></div>
+        <button class="btn" type="submit" id="send">Request a site visit →</button>
+        <p class="form-note" id="fnote">We'll never share your details.</p>
+        <div class="done" id="done" hidden>
+          <b>Request ready</b>
+          <pre id="summary"></pre>
+          <button type="button" class="btn" id="copy">Copy details</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" class="brand">
+          <svg viewBox="0 0 40 30" aria-hidden="true"><path d="M4 26V14l7-2v14z" fill="#e8eaef"/><path d="M13 26V7l8-3v22z" fill="#e8eaef"/><path d="M22 4l8 3v19h-8z" fill="#f7941d"/><path d="M31 12l5 2v12h-5z" fill="#f7941d"/><path d="M0 29l21-2v1z" fill="#e8eaef"/><path d="M21 27l19 2h-19z" fill="#f7941d"/></svg>
+          <span><b>DE BRUYN</b><small>DEVELOPMENTS &amp; PROJECTS</small></span>
+        </a>
+        <p style="max-width:34ch;margin-top:16px">New builds, extensions, renovations and commercial work across the Western Cape.</p>
+      </div>
+      <div><h4>Services</h4><ul><li><a href="#services">Building</a></li><li><a href="#services">Renovating</a></li><li><a href="#services">Painting</a></li><li><a href="#services">Maintenance</a></li><li><a href="#services">Waterproofing</a></li><li><a href="#services">Tiling</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="tel:+27834244263">083 424 4263</a></li><li><a href="mailto:debruyndevelopments@gmail.com" style="word-break:break-all">debruyndevelopments@gmail.com</a></li><li>Cape Town, Western Cape</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 De Bruyn Developments &amp; Projects</span><span>Building · Renovating · Painting · Maintenance · Waterproofing · Tiling</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // mobile nav
+  var burger=document.getElementById('burger'),links=document.getElementById('links');
+  burger.addEventListener('click',function(){var o=links.classList.toggle('open');burger.setAttribute('aria-expanded',o);});
+  links.addEventListener('click',function(e){if(e.target.tagName==='A'){links.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+
+  // project filters
+  var fbtns=document.querySelectorAll('.filters button'),projs=document.querySelectorAll('.proj');
+  fbtns.forEach(function(b){b.addEventListener('click',function(){
+    fbtns.forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+    var f=b.dataset.f;projs.forEach(function(p){p.hidden=!(f==='all'||p.dataset.c===f);});
+  });});
+
+  // process stages
+  var S=[
+    {t:'Site visit',d:'We meet on site, walk the property and listen to what you want to achieve.',l:['Measure up and check access','Discuss budget and timing','Flag anything that needs an engineer or plans']},
+    {t:'Itemised quote',d:'You get a line-by-line quote, so you can see exactly where the money goes.',l:['Materials and labour split out','Clear inclusions and exclusions','Payment schedule tied to milestones']},
+    {t:'Plans & programme',d:'We confirm approvals and lock in a build programme with key dates.',l:['Council and NHBRC paperwork','Engineer and architect coordination','Start date and milestone calendar']},
+    {t:'Build',d:'Your project manager runs the site daily and keeps you updated every week.',l:['Weekly photo progress reports','Variations signed off before work','Quality checks at each stage']},
+    {t:'Handover',d:'We walk through the finished job with you and close out every snag.',l:['Joint snag walkthrough','Certificates and guarantees handed over','Follow-up check after 3 months']}
+  ];
+  var ol=document.getElementById('stages'),build=document.getElementById('build'),cur=0;
+  for(var i=0;i<5;i++){var sp=document.createElement('span');build.appendChild(sp);}
+  S.forEach(function(s,i){
+    var li=document.createElement('li'),b=document.createElement('button');
+    b.type='button';b.id='tab'+i;b.setAttribute('role','tab');b.setAttribute('aria-controls','panel');
+    b.innerHTML='<span class="n">'+String(i+1).padStart(2,'0')+'</span><span class="t">'+s.t+'</span><span class="arr">→</span>';
+    b.addEventListener('click',function(){show(i);});
+    b.addEventListener('keydown',function(e){if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();show((cur+1)%5,true);}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();show((cur+4)%5,true);}});
+    li.appendChild(b);ol.appendChild(li);
+  });
+  function show(i,focus){
+    cur=i;var s=S[i];
+    ol.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-selected',j===i);b.tabIndex=j===i?0:-1;});
+    document.getElementById('p-step').textContent='Stage '+(i+1)+' of 5';
+    document.getElementById('p-title').textContent=s.t;
+    document.getElementById('p-text').textContent=s.d;
+    document.getElementById('p-list').innerHTML=s.l.map(function(x){return '<li>'+x+'</li>';}).join('');
+    build.querySelectorAll('span').forEach(function(sp,j){sp.className=j<=i?(i===4&&j===4?'on top':'on'):'';});
+    document.getElementById('build-cap').textContent=(i+1)*20+'% built';
+    if(focus)document.getElementById('tab'+i).focus();
+  }
+  show(0);
+
+  // quote form
+  var form=document.getElementById('qform');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=form.name.value.trim(),p=form.phone.value.trim(),note=document.getElementById('fnote');
+    if(!n||!p){note.textContent='Please add your name and phone number so we can reach you.';note.style.color='var(--orange-ink)';(n?form.phone:form.name).focus();return;}
+    note.textContent='We’ll never share your details.';note.style.color='';
+    var type=form.querySelector('input[name=type]:checked').value;
+    var txt='Project: '+type+'\nName: '+n+'\nPhone: '+p+'\nSuburb: '+(form.suburb.value||'-')+'\nBudget: '+form.budget.value+'\nDetails: '+(form.msg.value||'-');
+    document.getElementById('summary').textContent=txt;
+    document.getElementById('done').hidden=false;
+  });
+  document.getElementById('copy').addEventListener('click',function(){
+    var t=document.getElementById('summary').textContent,btn=this;
+    var ok=function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy details';},1800);};
+    try{navigator.clipboard.writeText(t).then(ok,sel);}catch(e){sel();}
+    function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('summary'));var s=getSelection();s.removeAllRanges();s.addRange(r);}
+  });
+})();
+</script>
+
+</body></html>
