@@ -51,7 +51,7 @@ header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
 .links .btn{padding:10px 18px;font-size:13px;color:var(--navy-deep)}
 .links .btn:hover{color:var(--orange)}
 .burger{display:none;background:none;border:1px solid var(--navy-line);color:var(--white);width:44px;height:44px;cursor:pointer}
-@media (max-width:860px){
+@media (max-width:1040px){
   .burger{display:grid;place-items:center}
   .links{position:absolute;left:0;right:0;top:72px;flex-direction:column;align-items:stretch;gap:0;background:var(--navy-deep);border-bottom:1px solid var(--navy-line);padding:8px var(--gutter) 20px}
   .links a{padding:14px 0;border-bottom:1px solid var(--navy-line)}
@@ -83,12 +83,37 @@ header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
 
 /* STRIP */
 .strip{background:var(--navy-deep);color:var(--white);border-top:1px solid var(--navy-line)}
-.strip-in{display:grid;grid-template-columns:repeat(4,1fr)}
+.strip-in{display:grid;grid-template-columns:repeat(5,1fr)}
 .strip-in div{padding:26px 20px;border-left:1px solid var(--navy-line)}
 .strip-in div:first-child{border-left:0;padding-left:0}
 .strip b{display:block;font-family:var(--display);font-variation-settings:"wdth" 115;font-weight:800;font-size:clamp(22px,2.6vw,30px);color:var(--orange);line-height:1.1}
 .strip span{font-size:13px;color:rgba(245,246,248,.65)}
-@media (max-width:760px){.strip-in{grid-template-columns:1fr 1fr}.strip-in div{padding:20px 14px}.strip-in div:nth-child(3){border-left:0;padding-left:0}.strip-in div:nth-child(n+3){border-top:1px solid var(--navy-line)}}
+@media (max-width:760px){.strip-in{grid-template-columns:1fr 1fr}.strip-in div{padding:20px 14px}.strip-in div:first-child{grid-column:1/-1}.strip-in div:nth-child(even){border-left:0;padding-left:0}.strip-in div:nth-child(n+2){border-top:1px solid var(--navy-line)}}
+
+/* WHY US */
+.why{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,80px);align-items:start}
+.why-big{background:var(--navy);color:var(--white);padding:clamp(28px,4vw,48px);position:relative;overflow:hidden}
+.why-big::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--navy-line) 1px,transparent 1px),linear-gradient(90deg,var(--navy-line) 1px,transparent 1px);background-size:24px 24px;opacity:.45}
+.why-big>*{position:relative}
+.why-big .num{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 120;font-size:clamp(88px,12vw,150px);line-height:.9;color:var(--orange)}
+.why-big .cap{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 110;font-size:clamp(20px,2.2vw,26px);text-transform:uppercase;margin:14px 0 12px;line-height:1.1}
+.why-big p{color:rgba(245,246,248,.72);margin:0;font-size:15px}
+.why-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--ink)}
+.why-list li{padding:26px 24px 28px 0;border-bottom:1px solid #d6dae3}
+.why-list li:nth-child(even){padding-left:24px;padding-right:0;border-left:1px solid #d6dae3}
+.why-list .n{font-family:var(--mono);font-size:12px;color:var(--orange-ink)}
+.why-list h3{font-size:20px;font-weight:800;font-variation-settings:"wdth" 105;text-transform:uppercase;margin:10px 0 8px}
+.why-list p{color:var(--ink-soft);margin:0;font-size:15px}
+@media (max-width:860px){.why{grid-template-columns:1fr}}
+@media (max-width:600px){.why-list{grid-template-columns:1fr}.why-list li,.why-list li:nth-child(even){padding:22px 0;border-left:0}}
+
+/* WHATSAPP */
+.wa-float{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:60;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 24px rgba(20,29,54,.35);transition:transform .2s}
+.wa-float:hover{transform:scale(1.07)}
+.wa-float svg{width:30px;height:30px}
+.wa-link{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:14px;font-weight:600;color:#128c4b;text-decoration:none}
+.wa-link svg{width:16px;height:16px}
+.wa-link:hover{text-decoration:underline}
 
 /* SECTIONS */
 section.block{padding-block:clamp(72px,10vw,128px)}
@@ -223,6 +248,7 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#projects">Projects</a>
+      <a href="#why">Why us</a>
       <a href="#process">How we work</a>
       <a href="tel:+27834244263" class="nav-tel">083 424 4263</a>
       <a href="#quote" class="btn">Get a quote →</a>
@@ -252,6 +278,7 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
     </div>
     <div class="strip">
       <div class="wrap strip-in">
+        <div><b>50+ sites</b><span>Completed in a single year</span></div>
         <div><b>6 trades</b><span>Building to tiling, one team</span></div>
         <div><b>1 contact</b><span>Dedicated project manager</span></div>
         <div><b>Fixed</b><span>Itemised, line-by-line quotes</span></div>
@@ -348,6 +375,30 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
     </div>
   </section>
 
+  <section class="block services" id="why">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="label">What makes us different</div><h2>Why clients choose De Bruyn.</h2></div>
+        <p>Plenty of builders can lay bricks. Here's what you get when you build with us.</p>
+      </div>
+      <div class="why">
+        <div class="why-big">
+          <div class="num">50+</div>
+          <div class="cap">Sites completed in one year</div>
+          <p>Homes, renovations, roofs and commercial fit-outs across the Western Cape. That's the volume of a big firm, still run by the owner on site.</p>
+        </div>
+        <ul class="why-list">
+          <li><span class="n">01</span><h3>The owner is on site</h3><p>The person who quotes your job runs it. No hand-offs to someone you've never met.</p></li>
+          <li><span class="n">02</span><h3>Fixed, itemised quotes</h3><p>Every line priced up front, so you know exactly where your money goes.</p></li>
+          <li><span class="n">03</span><h3>One team, six trades</h3><p>Building, renovating, painting, waterproofing, tiling and maintenance under one contract.</p></li>
+          <li><span class="n">04</span><h3>You always know where things stand</h3><p>Weekly photo progress reports and a direct line to your project manager.</p></li>
+          <li><span class="n">05</span><h3>No surprise costs</h3><p>Any change is priced and signed off by you before the work starts.</p></li>
+          <li><span class="n">06</span><h3>Clean, safe sites</h3><p>We keep the site tidy and secure every day, and leave it spotless at handover.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section class="block process" id="process">
     <div class="wrap">
       <div class="head">
@@ -378,7 +429,7 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
         <div class="head" style="margin-bottom:0"><div><div class="label">Get a quote</div><h2>Tell us about your build.</h2></div></div>
         <p style="color:var(--ink-soft);max-width:42ch;margin-top:20px">Send the basics and we'll come back within two working days to arrange a site visit. Plans or photos help, but they're not required.</p>
         <div class="contact-list">
-          <div><span class="label">Phone / WhatsApp</span><b><a href="tel:+27834244263" style="text-decoration:none">083 424 4263</a></b></div>
+          <div><span class="label">Phone / WhatsApp</span><b><a href="tel:+27834244263" style="text-decoration:none">083 424 4263</a></b><a class="wa-link" href="https://wa.me/27834244263?text=Hi%20De%20Bruyn%2C%20I%27d%20like%20a%20quote." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35M12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></svg>Chat on WhatsApp</a></div>
           <div><span class="label">Email</span><b><a href="mailto:debruyndevelopments@gmail.com" style="text-decoration:none;word-break:break-all">debruyndevelopments@gmail.com</a></b></div>
           <div><span class="label">Area</span><b>Cape Town &amp; Western Cape</b></div>
         </div>
@@ -433,6 +484,10 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
     <div class="legal"><span>© 2026 De Bruyn Developments &amp; Projects</span><span>Building · Renovating · Painting · Maintenance · Waterproofing · Tiling</span></div>
   </div>
 </footer>
+
+<a class="wa-float" href="https://wa.me/27834244263?text=Hi%20De%20Bruyn%2C%20I%27d%20like%20a%20quote." target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35M12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></svg>
+</a>
 
 <script>
 (function(){
