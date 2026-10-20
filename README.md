@@ -14,7 +14,7 @@ One-page website for De Bruyn Developments & Projects, a Cape Town building cont
 Deployed with GitHub Pages from the `main` branch root.
 
 ## To do
-- [ ] Replace the project and team photo placeholders with real photos (put them in `/assets`)
+- [x] Replace the project and team photo placeholders with real photos (put them in `/assets`)
 - [ ] Connect the quote form to Formspree or a WhatsApp link so leads arrive
 - [ ] Confirm the service area (currently "Cape Town, Western Cape")
 - [ ] Add a custom domain (optional)

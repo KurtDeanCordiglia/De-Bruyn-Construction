@@ -93,7 +93,7 @@ header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
 /* WHY US */
 .why{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,80px);align-items:start}
 .why-big{background:var(--navy);color:var(--white);padding:clamp(28px,4vw,48px);position:relative;overflow:hidden}
-.why-big::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--navy-line) 1px,transparent 1px),linear-gradient(90deg,var(--navy-line) 1px,transparent 1px);background-size:24px 24px;opacity:.45}
+.why-big::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,29,54,.78),rgba(20,29,54,.95)),url("assets/starter-bars-wall.jpg") center/cover}
 .why-big>*{position:relative}
 .why-big .num{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 120;font-size:clamp(88px,12vw,150px);line-height:.9;color:var(--orange)}
 .why-big .cap{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 110;font-size:clamp(20px,2.2vw,26px);text-transform:uppercase;margin:14px 0 12px;line-height:1.1}
@@ -165,6 +165,12 @@ section.block{padding-block:clamp(72px,10vw,128px)}
 .proj h3{position:relative;font-size:24px;font-weight:800;font-variation-settings:"wdth" 108;text-transform:uppercase}
 .proj p{position:relative;margin:6px 0 0;font-size:14px;color:rgba(245,246,248,.7)}
 .proj[hidden]{display:none!important}
+.proj img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .6s}
+.proj.has-photo::before{background-image:linear-gradient(180deg,rgba(20,29,54,0) 30%,rgba(20,29,54,.9) 100%);background-size:auto;opacity:1;z-index:1}
+.proj.has-photo:hover::before{transform:none}
+.proj.has-photo:hover img{transform:scale(1.05)}
+.proj .cat,.proj h3,.proj p{z-index:2}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 @media (max-width:860px){.proj-grid{grid-template-columns:1fr 1fr}.proj,.proj.wide{grid-column:span 1}.proj.wide{grid-column:span 2}}
 @media (max-width:560px){.proj-grid{grid-template-columns:1fr}.proj,.proj.wide{grid-column:span 1;min-height:240px}}
 
@@ -290,7 +296,7 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
   <section class="block" id="about">
     <div class="wrap about">
       <div class="photo">
-        <div class="ph">Team / site photo<br>4:5 · min 1200px</div>
+        <img src="assets/team-wall-repair.jpg" alt="De Bruyn team repairing and plastering a concrete wall on site" loading="lazy">
         <div class="stamp">Owner-run.<br>On site.</div>
       </div>
       <div class="about-copy">
@@ -366,11 +372,11 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
         </div>
       </div>
       <div class="proj-grid">
-        <article class="proj wide" data-c="residential"><div class="ph">Project photo · 16:9</div><span class="cat">Residential</span><h3>Double-storey family home</h3><p>New build · 320 m² · Example project</p></article>
-        <article class="proj" data-c="renovation"><div class="ph">Project photo</div><span class="cat">Renovation</span><h3>Kitchen &amp; living remodel</h3><p>Open-plan conversion · Example project</p></article>
-        <article class="proj" data-c="commercial"><div class="ph">Project photo</div><span class="cat">Commercial</span><h3>Retail unit fit-out</h3><p>Shell to trading in 6 weeks · Example</p></article>
-        <article class="proj" data-c="residential"><div class="ph">Project photo</div><span class="cat">Residential</span><h3>Second-storey addition</h3><p>Extension · 2 bedrooms + bath · Example</p></article>
-        <article class="proj" data-c="renovation"><div class="ph">Project photo</div><span class="cat">Renovation</span><h3>Roof replacement</h3><p>Re-roof &amp; waterproofing · Example</p></article>
+        <article class="proj wide has-photo" data-c="commercial"><img src="assets/formwork-wall.jpg" alt="Braced timber formwork along a long reinforced concrete wall" loading="lazy"><span class="cat">Commercial</span><h3>Reinforced concrete walls</h3><p>Formwork, steel fixing &amp; concrete pour</p></article>
+        <article class="proj has-photo" data-c="residential"><img src="assets/pool-deck-prep.jpg" alt="Pool deck and walkway prepared for waterproofing and tiling" loading="lazy"><span class="cat">Residential</span><h3>Pool deck refurbishment</h3><p>Surface prep for waterproofing &amp; tiling</p></article>
+        <article class="proj has-photo" data-c="commercial"><img src="assets/steel-gantry.jpg" alt="Team installing a steel entrance gantry with a front-end loader" loading="lazy"><span class="cat">Commercial</span><h3>Steel entrance gantry</h3><p>Fabrication &amp; installation on site</p></article>
+        <article class="proj has-photo" data-c="commercial"><img src="assets/slab-pour.jpg" alt="Crew pouring and levelling a concrete foundation slab" loading="lazy"><span class="cat">Commercial</span><h3>Foundation slab</h3><p>Shuttering, steel &amp; ready-mix pour</p></article>
+        <article class="proj has-photo" data-c="renovation"><img src="assets/balcony-screed.jpg" alt="Team laying a new screed on a residential balcony" loading="lazy"><span class="cat">Renovation</span><h3>Balcony re-screed</h3><p>Screed &amp; waterproofing prep</p></article>
       </div>
     </div>
   </section>
