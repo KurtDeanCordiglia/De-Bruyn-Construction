@@ -13,16 +13,26 @@ jobs:
       - name: Get the latest code
         uses: actions/checkout@v4
 
-      - name: Upload website to xneelo via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          server-dir: public_html/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            .github/**
-            README.md
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      # xneelo requires FTP over TLS on both the login and the file transfers
+      - name: Upload website to xneelo via FTPS
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp -e "
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ssl:verify-certificate no;
+            set ftp:passive-mode true;
+            set net:timeout 30;
+            set net:max-retries 3;
+            mirror --reverse --verbose --parallel=4 \
+              --exclude '(^|/)\.git' \
+              --exclude '^README\.md$' \
+              ./ public_html/;
+            bye
+          " --env-password -u "$FTP_USERNAME" "$FTP_SERVER"
