@@ -505,12 +505,18 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
             <select id="budget" name="budget"><option>Not sure yet</option><option>Under R250k</option><option>R250k – R750k</option><option>R750k – R2m</option><option>R2m +</option></select></div>
         </div>
         <div class="field"><label for="msg">What do you want built?</label><textarea id="msg" name="msg" rows="4" placeholder="Size, timing, whether you have approved plans…"></textarea></div>
+        <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></div>
+        <input type="hidden" name="started" id="started">
         <button class="btn" type="submit" id="send">Request a site visit →</button>
         <p class="form-note" id="fnote">We'll never share your details.</p>
         <div class="done" id="done" hidden>
-          <b>Request ready</b>
+          <b id="done-title">Request sent</b>
+          <p id="done-text" style="margin:10px 0 0;color:rgba(245,246,248,.8)"></p>
           <pre id="summary"></pre>
-          <button type="button" class="btn" id="copy">Copy details</button>
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <a class="btn" id="wa-send" href="#" target="_blank" rel="noopener" hidden>Send on WhatsApp</a>
+            <button type="button" class="btn ghost" id="copy">Copy details</button>
+          </div>
         </div>
       </form>
     </div>
@@ -592,9 +598,26 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
     note.textContent='We’ll never share your details.';note.style.color='';
     var type=form.querySelector('input[name=type]:checked').value;
     var txt='Project: '+type+'\nName: '+n+'\nPhone: '+p+'\nSuburb: '+(form.suburb.value||'-')+'\nBudget: '+form.budget.value+'\nDetails: '+(form.msg.value||'-');
-    document.getElementById('summary').textContent=txt;
-    document.getElementById('done').hidden=false;
+    var btn=document.getElementById('send'),done=document.getElementById('done'),wa=document.getElementById('wa-send');
+    btn.disabled=true;btn.textContent='Sending…';
+    function finish(ok){
+      btn.disabled=false;btn.textContent='Request a site visit →';
+      document.getElementById('summary').textContent=txt;
+      document.getElementById('done-title').textContent=ok?'Request sent':'Not sent yet';
+      document.getElementById('done-text').textContent=ok
+        ?'Thanks, '+n.split(' ')[0]+'. We’ll be in touch within two working days to arrange a site visit.'
+        :'Something went wrong sending your request. Please send it to us on WhatsApp instead, it only takes a tap.';
+      wa.href='https://wa.me/27834244263?text='+encodeURIComponent('Quote request from the website\n\n'+txt);
+      wa.hidden=ok;
+      done.hidden=false;
+      if(ok)form.reset();
+    }
+    fetch('contact.php',{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}})
+      .then(function(r){return r.json().catch(function(){return {ok:false};});})
+      .then(function(d){finish(!!(d&&d.ok));})
+      .catch(function(){finish(false);});
   });
+  document.getElementById('started').value=Date.now();
   document.getElementById('copy').addEventListener('click',function(){
     var t=document.getElementById('summary').textContent,btn=this;
     var ok=function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy details';},1800);};
