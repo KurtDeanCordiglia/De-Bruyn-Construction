@@ -161,6 +161,11 @@ section.block{padding-block:clamp(72px,10vw,128px)}
 .photo::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--navy-line) 1px,transparent 1px),linear-gradient(90deg,var(--navy-line) 1px,transparent 1px);background-size:24px 24px;opacity:.6}
 .photo .ph{position:relative;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:16px;border:1px dashed rgba(245,246,248,.35)}
 .photo .stamp{position:absolute;right:20px;bottom:20px;background:var(--orange);color:var(--navy-deep);padding:16px 18px;font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 115;line-height:1.05;font-size:15px;text-transform:uppercase}
+.photo.vid{aspect-ratio:9/16;width:100%;max-width:380px;justify-self:center;overflow:visible;background:var(--navy-deep)}
+.photo.vid::before{display:none}
+.photo.vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--navy-deep)}
+.photo.vid .stamp{right:-18px;bottom:-18px;z-index:2;pointer-events:none;transition:opacity .3s}
+.photo.vid.playing .stamp{opacity:0}
 .about-copy{min-width:0}
 .about-copy p{color:var(--ink-soft);font-size:17px;max-width:58ch}
 .about-copy p.big{color:var(--ink);font-size:clamp(20px,2vw,24px);line-height:1.45;font-weight:500}
@@ -366,8 +371,11 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
 
   <section class="block" id="about">
     <div class="wrap about">
-      <div class="photo">
-        <img src="assets/team-wall-repair.jpg" alt="De Bruyn team repairing and plastering a concrete wall on site" loading="lazy">
+      <div class="photo vid">
+        <video id="owner-vid" controls playsinline preload="none" poster="assets/owner-intro-poster.jpg" aria-label="Meet the director of De Bruyn Developments">
+          <source src="assets/owner-intro.mp4" type="video/mp4">
+          Your browser can't play this video.
+        </video>
         <div class="stamp">Owner-run.<br>On site.</div>
       </div>
       <div class="about-copy">
@@ -694,6 +702,13 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
     try{navigator.clipboard.writeText(t).then(ok,sel);}catch(e){sel();}
     function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('summary'));var s=getSelection();s.removeAllRanges();s.addRange(r);}
   });
+
+  // owner intro video: hide the tag while playing
+  var ov=document.getElementById('owner-vid');
+  if(ov){var ow=ov.parentNode;
+    ov.addEventListener('play',function(){ow.classList.add('playing');});
+    ov.addEventListener('ended',function(){ow.classList.remove('playing');});
+  }
 
   // photo reveal on scroll
   if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
