@@ -204,6 +204,30 @@ section.block{padding-block:clamp(72px,10vw,128px)}
 .proj.has-photo:hover img{transform:scale(1.05)}
 .proj .cat,.proj h3,.proj p{z-index:2}
 .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* one project, several photos */
+.proj.group{grid-column:1/-1;display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:230px 230px;gap:6px;padding:0;min-height:0;background:var(--navy-deep)}
+.proj.group::before{display:none}
+.g-main{position:relative;grid-row:span 2;overflow:hidden}
+.g-main::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,29,54,0) 35%,rgba(20,29,54,.92) 100%);z-index:1;pointer-events:none}
+.g-ph{position:relative;display:block;width:100%;height:100%;border:0;padding:0;margin:0;background:var(--navy);cursor:zoom-in;overflow:hidden}
+.g-main .g-ph{position:absolute;inset:0}
+.g-ph:focus-visible{outline:3px solid var(--orange);outline-offset:-3px}
+.g-ph:hover img{transform:scale(1.05)}
+.g-cap{position:absolute;left:0;right:0;bottom:0;padding:22px;z-index:2;display:flex;flex-direction:column;pointer-events:none}
+.g-count{position:relative;z-index:2;margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange)}
+.g-tag{position:absolute;left:10px;bottom:10px;z-index:2;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;background:rgba(20,29,54,.82);color:var(--white);padding:4px 7px}
+.g-tag.before{background:var(--orange);color:var(--navy-deep)}
+/* photo viewer */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(14,20,38,.95);display:flex;align-items:center;justify-content:center;padding:56px 72px}
+.lb[hidden]{display:none}
+.lb figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px;max-width:100%}
+.lb img{display:block;max-width:100%;max-height:calc(100vh - 150px);object-fit:contain}
+.lb figcaption{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,246,248,.8);text-align:center}
+.lb button{position:absolute;border:0;background:rgba(245,246,248,.1);color:var(--white);width:48px;height:48px;font-size:28px;line-height:1;cursor:pointer}
+.lb button:hover,.lb button:focus-visible{background:var(--orange);color:var(--navy-deep)}
+.lb-x{top:14px;right:14px}
+.lb-prev{left:14px;top:50%;transform:translateY(-50%)}
+.lb-next{right:14px;top:50%;transform:translateY(-50%)}
 
 /* PHOTO EFFECTS (only switched on by JS when supported) */
 .reveal-on .rv{opacity:0;transform:translateY(32px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
@@ -211,11 +235,15 @@ section.block{padding-block:clamp(72px,10vw,128px)}
 .reveal-on .proj.rv img{transform:scale(1.18);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
 .reveal-on .proj.rv.in img{transform:scale(1)}
 .reveal-on .proj.rv.in:hover img{transform:scale(1.06)}
+.reveal-on .proj.group.rv.in:hover img{transform:scale(1)}
+.reveal-on .proj.group.rv.in .g-ph:hover img{transform:scale(1.06)}
 .photo img{animation:drift 22s ease-in-out infinite alternate}
 .why-big::before{animation:drift 26s ease-in-out infinite alternate}
 @keyframes drift{from{transform:scale(1.02) translate(0,0)}to{transform:scale(1.1) translate(-2%,-1.5%)}}
 @media (max-width:860px){.proj-grid{grid-template-columns:1fr 1fr}.proj,.proj.wide{grid-column:span 1}.proj.wide{grid-column:span 2}}
 @media (max-width:560px){.proj-grid{grid-template-columns:1fr}.proj,.proj.wide{grid-column:span 1;min-height:240px}}
+@media (max-width:860px){.proj.group{grid-template-columns:1fr 1fr;grid-template-rows:300px 170px 170px}.g-main{grid-column:1/-1;grid-row:auto}}
+@media (max-width:560px){.proj.group{min-height:0;grid-template-rows:260px 130px 130px}.lb{padding:56px 12px 84px}.lb-prev,.lb-next{top:auto;bottom:14px;transform:none}}
 
 /* PROCESS */
 .process{background:var(--navy);color:var(--white)}
@@ -421,11 +449,16 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
         <article class="proj has-photo" data-c="commercial"><img src="assets/steel-gantry.jpg" alt="Team installing a steel entrance gantry with a front-end loader" loading="lazy"><span class="cat">Commercial</span><h3>Steel entrance gantry</h3><p>Fabrication &amp; installation on site</p></article>
         <article class="proj has-photo" data-c="commercial"><img src="assets/slab-pour.jpg" alt="Crew pouring and levelling a concrete foundation slab" loading="lazy"><span class="cat">Commercial</span><h3>Foundation slab</h3><p>Shuttering, steel &amp; ready-mix pour</p></article>
         <article class="proj has-photo" data-c="renovation"><img src="assets/balcony-screed.jpg" alt="Team laying a new screed on a residential balcony" loading="lazy"><span class="cat">Renovation</span><h3>Balcony re-screed</h3><p>Screed &amp; waterproofing prep</p></article>
-        <article class="proj wide has-photo" data-c="hospitality"><img src="assets/spoon-feature-wall.jpg" alt="Green herringbone tile feature wall with LED-lit timber floating shelves at Spoon Bakery" loading="lazy"><span class="cat">Hospitality</span><h3>Spoon Bakery feature wall</h3><p>Herringbone tiling, floating shelves &amp; LED lighting</p></article>
-        <article class="proj has-photo" data-c="hospitality"><img src="assets/spoon-arch-tiles.jpg" alt="Arched green herringbone tile panel above a coffee station" loading="lazy"><span class="cat">Hospitality</span><h3>Arched tile panel</h3><p>Spoon Bakery coffee station</p></article>
-        <article class="proj has-photo" data-c="hospitality"><img src="assets/spoon-before-tiling.jpg" alt="Lit timber shelves on a bare plastered wall before tiling" loading="lazy"><span class="cat">Hospitality</span><h3>Before tiling</h3><p>Shelves &amp; lighting in, wall ready for tiles</p></article>
-        <article class="proj has-photo" data-c="hospitality"><img src="assets/spoon-shelf-detail.jpg" alt="Close-up of timber shelves with LED strip lighting over herringbone tiles" loading="lazy"><span class="cat">Hospitality</span><h3>Shelf &amp; lighting detail</h3><p>Stained timber with concealed LED strips</p></article>
-        <article class="proj has-photo" data-c="hospitality"><img src="assets/spoon-steel-shelving.jpg" alt="Suspended black steel and timber shelving over the Spoon Bakery kitchen pass" loading="lazy"><span class="cat">Hospitality</span><h3>Overhead steel shelving</h3><p>Suspended frame over the kitchen pass</p></article>
+        <article class="proj group" data-c="hospitality">
+          <div class="g-main">
+            <button type="button" class="g-ph" data-cap="Feature wall &amp; floating shelves"><img src="assets/spoon-feature-wall.jpg" alt="Green herringbone tile feature wall with LED-lit timber floating shelves at Spoon Bakery" loading="lazy"></button>
+            <div class="g-cap"><span class="cat">Hospitality</span><h3>Spoon Bakery renovation</h3><p>Herringbone tile feature walls, floating timber shelves with LED lighting and suspended steel shelving over the kitchen pass.</p><span class="g-count">5 photos · tap to view</span></div>
+          </div>
+          <button type="button" class="g-ph" data-cap="Arched tile panel"><img src="assets/spoon-arch-tiles.jpg" alt="Arched green herringbone tile panel above a coffee station" loading="lazy"><span class="g-tag">Arched tile panel</span></button>
+          <button type="button" class="g-ph" data-cap="Before tiling"><img src="assets/spoon-before-tiling.jpg" alt="Lit timber shelves on a bare plastered wall before tiling" loading="lazy"><span class="g-tag before">Before</span></button>
+          <button type="button" class="g-ph" data-cap="Shelf &amp; lighting detail"><img src="assets/spoon-shelf-detail.jpg" alt="Close-up of timber shelves with LED strip lighting over herringbone tiles" loading="lazy"><span class="g-tag">Shelf detail</span></button>
+          <button type="button" class="g-ph" data-cap="Overhead steel shelving"><img src="assets/spoon-steel-shelving.jpg" alt="Suspended black steel and timber shelving over the Spoon Bakery kitchen pass" loading="lazy"><span class="g-tag">Steel shelving</span></button>
+        </article>
       </div>
     </div>
   </section>
@@ -550,6 +583,13 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35M12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></svg>
 </a>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Project photos" hidden>
+  <button type="button" class="lb-x" aria-label="Close">×</button>
+  <button type="button" class="lb-prev" aria-label="Previous photo">‹</button>
+  <figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+  <button type="button" class="lb-next" aria-label="Next photo">›</button>
+</div>
+
 <script>
 (function(){
   // mobile nav
@@ -563,6 +603,30 @@ footer{background:var(--navy-deep);color:rgba(245,246,248,.7);padding-block:56px
     fbtns.forEach(function(x){x.setAttribute('aria-pressed',x===b);});
     var f=b.dataset.f;projs.forEach(function(p){p.hidden=!(f==='all'||p.dataset.c===f);});
   });});
+
+  // project photo viewer
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),lbCap=document.getElementById('lb-cap'),
+      lbX=lb.querySelector('.lb-x'),gal=[],gi=0,lastFocus=null,tx=null;
+  document.querySelectorAll('.g-ph').forEach(function(b,i){
+    var im=b.querySelector('img');gal.push({src:im.getAttribute('src'),alt:im.alt,cap:b.dataset.cap});
+    b.addEventListener('click',function(){lastFocus=b;lbShow(i);lb.hidden=false;document.body.style.overflow='hidden';lbX.focus();});
+  });
+  function lbShow(i){gi=(i+gal.length)%gal.length;var g=gal[gi];lbImg.src=g.src;lbImg.alt=g.alt;lbCap.textContent=g.cap+' · '+(gi+1)+' / '+gal.length;}
+  function lbClose(){lb.hidden=true;document.body.style.overflow='';if(lastFocus)lastFocus.focus();}
+  lbX.addEventListener('click',lbClose);
+  lb.querySelector('.lb-prev').addEventListener('click',function(){lbShow(gi-1);});
+  lb.querySelector('.lb-next').addEventListener('click',function(){lbShow(gi+1);});
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target.tagName==='FIGURE')lbClose();});
+  lb.addEventListener('keydown',function(e){
+    if(e.key==='Escape')lbClose();
+    else if(e.key==='ArrowLeft')lbShow(gi-1);
+    else if(e.key==='ArrowRight')lbShow(gi+1);
+    else if(e.key==='Tab'){var bs=lb.querySelectorAll('button'),f=bs[0],l=bs[bs.length-1];
+      if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}
+      else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}}
+  });
+  lb.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+  lb.addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(dx)>40)lbShow(dx<0?gi+1:gi-1);});
 
   // process stages
   var S=[
